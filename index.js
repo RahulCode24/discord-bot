@@ -1,4 +1,5 @@
 const { Client, GatewayIntentBits } = require('discord.js');
+require('dotenv').config();
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 client.on('ready', () => {
@@ -18,7 +19,11 @@ client.on('interactionCreate', async interaction => {
     if (interaction.commandName === 'ping') {
       await interaction.reply('Pong!');
     }
+
+    if (interaction.commandName === 'create') {
+        await interaction.reply('Shortening URL is in under process...');
+    }
 });
   
-client.login("REDACTED");
+client.login(process.env.BOT_TOKEN);
   
